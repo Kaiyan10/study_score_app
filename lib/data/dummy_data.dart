@@ -1,0 +1,60 @@
+import 'package:test_score_app/models/routine_test_score.dart';
+
+var dummyScore = [
+  RoutineTestScore(
+    testName: "1年1学期中間",
+    englishScore: 80,
+    mathScore: 70,
+    languageScore: 60,
+    scienceScore: 90,
+    socialScore: 80,
+    artScore: 100,
+    industrialArtsAndHomemakingScore:20,
+    physicalEducationScore: 20,),
+  RoutineTestScore(
+    testName: "1年1学期期末",
+    englishScore: 60,
+    mathScore: 30,
+    languageScore: 40,
+    scienceScore: 60,
+    socialScore: 70,
+    musicScore: 30,
+    artScore: 50,
+    industrialArtsAndHomemakingScore:70,
+    physicalEducationScore: 80,),
+  RoutineTestScore(
+    testName: "1年2学期中間",
+    englishScore: 70,
+    mathScore: 90,
+    languageScore: 50,
+    scienceScore: 70,
+    socialScore: 30,
+    musicScore: 60,
+    artScore: 80,
+    industrialArtsAndHomemakingScore:20,
+    physicalEducationScore: 20,),
+  RoutineTestScore(
+    testName: "1年2学期期末",
+    englishScore: 60,
+    mathScore: 30,
+    languageScore: 40,
+    scienceScore: 60,
+    socialScore: 70,
+    musicScore: 30,
+    artScore: 50,
+    industrialArtsAndHomemakingScore:70,
+    physicalEducationScore: 80,),
+  RoutineTestScore(
+    testName: "1年3学期学年末",
+    englishScore: 80,
+    mathScore: 70,
+    languageScore: 60,
+    scienceScore: 90,
+    socialScore: 80,
+    musicScore: 100,
+    artScore: 100,
+    industrialArtsAndHomemakingScore:20,
+    physicalEducationScore: 20,),
+
+
+];
