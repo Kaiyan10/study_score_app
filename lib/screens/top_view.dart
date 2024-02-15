@@ -15,6 +15,7 @@ class _TopViewScreenState extends State<TopViewScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Topページ"),
@@ -22,40 +23,25 @@ class _TopViewScreenState extends State<TopViewScreen> {
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: DataTable(
-            columns:  const <DataColumn>[
-              DataColumn(
-                label: Text('試験名'),
-              ),
-              DataColumn(
-                label: Text('英語'),
-              ),
-              DataColumn(
-                label: Text('数学'),
-              ),
-              DataColumn(
-                label: Text('理科'),
-              ),
-              DataColumn(
-                label: Text('社会'),
-              ),
-              DataColumn(
-                label: Text('音楽'),
-              ),
-            ],
+            columns:  List<DataColumn>.generate(
+              scores.length,
+              (index) => DataColumn(label: (Text(scores[index].testName)))
+            )
+              ,
             rows: List<DataRow>.generate(
                 scores.length,
                 (index) => DataRow(cells: <DataCell>[
-                  DataCell(Text(scores[index].testName)),
-                      DataCell(Text(scores[index].englishScore.toString())),
-                  DataCell(Text(scores[index].mathScore.toString())),
-                  DataCell(Text(scores[index].scienceScore.toString())),
-                  DataCell(Text(scores[index].socialScore.toString())),
-                  DataCell(Text(scores[index].musicScore.toString() ?? "0")),
+                  for(final subjectData in scores[index].subjectDatas)...{
+                    DataCell(Text(subjectData.subjectName)),
+                  }
                     ])),
           ),
-        ));
+          ),
+        );
   }
 }
+
+
 
 // ListView.builder(
 // itemCount: scores.length,

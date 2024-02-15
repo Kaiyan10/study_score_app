@@ -19,7 +19,7 @@ class _TestTypeSettingsScreenState extends State<TestTypeSettingsScreen> {
         itemCount: testType.length,
         itemBuilder: (context, index) {
           return ListTile(
-            trailing: Icon(
+            trailing: const Icon(
               Icons.reorder,
               color: Colors.grey,
             ),

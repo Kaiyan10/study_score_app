@@ -1,60 +1,56 @@
-import 'package:test_score_app/models/routine_test_score.dart';
+import '../models/subject_data.dart';
+import '../models/routine_test_score.dart';
 
 var dummyScore = [
   RoutineTestScore(
     testName: "1年1学期中間",
-    englishScore: 80,
-    mathScore: 70,
-    languageScore: 60,
-    scienceScore: 90,
-    socialScore: 80,
-    artScore: 100,
-    industrialArtsAndHomemakingScore:20,
-    physicalEducationScore: 20,),
-  RoutineTestScore(
+    subjectDatas: [
+      SubjectData(subjectName: "英語",score: 80),
+      SubjectData(subjectName: "数学",score: 60),
+      SubjectData(subjectName: "国語",score: 40),
+      SubjectData(subjectName: "理科",score: 70),
+      SubjectData(subjectName: "社会",score: 60),
+    ]
+    ),
+    RoutineTestScore(
     testName: "1年1学期期末",
-    englishScore: 60,
-    mathScore: 30,
-    languageScore: 40,
-    scienceScore: 60,
-    socialScore: 70,
-    musicScore: 30,
-    artScore: 50,
-    industrialArtsAndHomemakingScore:70,
-    physicalEducationScore: 80,),
-  RoutineTestScore(
+    subjectDatas: [
+      SubjectData(subjectName: "英語",score: 50),
+      SubjectData(subjectName: "数学",score: 70),
+      SubjectData(subjectName: "国語",score: 80),
+      SubjectData(subjectName: "理科",score: 40),
+      SubjectData(subjectName: "社会",score: 50),
+      SubjectData(subjectName: "音楽",score:40),
+      SubjectData(subjectName: "保健体育",score:40),
+      SubjectData(subjectName: "技術・家庭科",score:50),
+    ]
+    ),
+    RoutineTestScore(
     testName: "1年2学期中間",
-    englishScore: 70,
-    mathScore: 90,
-    languageScore: 50,
-    scienceScore: 70,
-    socialScore: 30,
-    musicScore: 60,
-    artScore: 80,
-    industrialArtsAndHomemakingScore:20,
-    physicalEducationScore: 20,),
-  RoutineTestScore(
+    subjectDatas: [
+      SubjectData(subjectName: "英語",score: 90),
+      SubjectData(subjectName: "数学",score: 80),
+      SubjectData(subjectName: "国語",score: 70),
+      SubjectData(subjectName: "理科",score: 80),
+      SubjectData(subjectName: "社会",score: 60),
+    ]
+    ),
+    RoutineTestScore(
     testName: "1年2学期期末",
-    englishScore: 60,
-    mathScore: 30,
-    languageScore: 40,
-    scienceScore: 60,
-    socialScore: 70,
-    musicScore: 30,
-    artScore: 50,
-    industrialArtsAndHomemakingScore:70,
-    physicalEducationScore: 80,),
-  RoutineTestScore(
-    testName: "1年3学期学年末",
-    englishScore: 80,
-    mathScore: 70,
-    languageScore: 60,
-    scienceScore: 90,
-    socialScore: 80,
-    musicScore: 100,
-    artScore: 100,
-    industrialArtsAndHomemakingScore:20,
-    physicalEducationScore: 20,),
+    subjectDatas: [
+      SubjectData(subjectName: "英語",score: 50),
+      SubjectData(subjectName: "数学",score: 70),
+      SubjectData(subjectName: "国語",score: 80),
+      SubjectData(subjectName: "理科",score: 40),
+      SubjectData(subjectName: "社会",score: 50),
+      SubjectData(subjectName: "音楽",score:60),
+      SubjectData(subjectName: "保健体育",score:70),
+      SubjectData(subjectName: "技術・家庭科",score:80),
+      
+    ]
+    ),
 
+
+  
 
 ];
