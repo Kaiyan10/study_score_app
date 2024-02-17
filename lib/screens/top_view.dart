@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:test_score_app/data/dummy_data.dart';
-import 'package:test_score_app/models/routine_test_score.dart';
+import 'package:test_score_app/models/Standard_test_score.dart';
+import 'package:test_score_app/models/standard_test_subject.dart';
+import 'package:test_score_app/screens/chart_view.dart';
 
 class TopViewScreen extends StatefulWidget {
   const TopViewScreen({Key? key}) : super(key: key);
@@ -11,37 +14,46 @@ class TopViewScreen extends StatefulWidget {
 
 class _TopViewScreenState extends State<TopViewScreen> {
   final selectedIndex = <int>{};
+  final subjects = dummySubject;
   final scores = dummyScore;
-  final subjectNameList = subjectNameListMaking(dummyScore);
-
-
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: const Text("Topページ"),
         ),
-        body:Column(
-          children: [
-            for (final name in subjectNameList)
-              Text(name),
-          ],
-        )
-        );
+        body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columns: [
+              DataColumn(label: Text("科目"),),
+              for (final score in scores)
+                DataColumn(
+                    label: Text(
+                  score.testName,
+                  style: TextStyle(fontSize: 10),
+                )),
+            ],
+            rows: [
+              DataRow(cells: [
+                DataCell(Text(subjects.modernJapaneseTestSubject.toString(),),),
+                for (final score in scores)
+                  DataCell(Text(score.modernJapaneseTestScore.toString(),),),
+              ]),
+              DataRow(cells: [
+                DataCell(Text(subjects.classicalJapaneseTestSubject.toString(),),),
+                for (final score in scores)
+                  DataCell(Text(score.classicalJapaneseTestScore.toString(),),),
+              ]),
+              DataRow(cells: [
+                DataCell(Text(subjects.classicalChineseTestSubject.toString(),),),
+                for (final score in scores)
+                  DataCell(Text(score.classicalChineseTestScore.toString(),),),
+              ]),
+
+            ],
+          ),
+        ));
   }
 }
-
-
-List<String> subjectNameListMaking(List<RoutineTestScore> testScores){
-  List<String> subjectNameList = [];
-  for (int i=0;i<testScores.length;i++)
-    for(int j=0;j<testScores[i].subjectDatas.length;j++)
-      subjectNameList.add(testScores[i].subjectDatas[j].subjectName);
-
-  subjectNameList = subjectNameList.toSet().toList();
-  return subjectNameList;
-
-}
-
