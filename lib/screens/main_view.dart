@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:test_score_app/data/dummy_data.dart';
+import 'package:test_score_app/models/standard_test_subject.dart';
 import 'package:test_score_app/screens/chart_view.dart';
 import 'package:test_score_app/screens/setting_screen.dart';
 import 'package:test_score_app/screens/top_view.dart';
 
-const testType = ["定期テスト","共通テスト模試","2次試験模試"];
+const testType = ["定期テスト", "共通テスト模試", "2次試験模試"];
 
 class MainViewScreen extends StatefulWidget {
   const MainViewScreen({Key? key}) : super(key: key);
@@ -13,17 +15,19 @@ class MainViewScreen extends StatefulWidget {
 }
 
 class _MainViewScreenState extends State<MainViewScreen> {
-  String isSelectedValue = testType.first;
+  final StandardTestSubject standardTestSubject = dummySubject;
 
   static const _screens = [
     TopViewScreen(),
     ChartView(),
-    SettingScreen(testType: testType)
+    SettingScreen(
+      standardTestSubject: standardTestSubject,
+    ),
   ];
 
   int _selectedIndex = 0;
 
-  void _onItemTapped(int index){
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });

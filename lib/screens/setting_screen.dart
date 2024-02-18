@@ -1,10 +1,13 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:test_score_app/screens/settings/testtype_setting_screen.dart';
+import 'package:test_score_app/models/standard_test_subject.dart';
+import 'package:test_score_app/screens/settings/standard_test_subject_setting_screen.dart';
 
 class SettingScreen extends StatelessWidget {
-  final List<String> testType;
-  const SettingScreen({Key? key,required this.testType}) : super(key: key);
+  final StandardTestSubject standardTestSubject;
+  const SettingScreen({super.key, required this.standardTestSubject});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +26,16 @@ class SettingScreen extends StatelessWidget {
               title: const Text("Common"),
               tiles: <SettingsTile>[
                 SettingsTile.navigation(
-                  title: const Text("テスト種類"),
+                  title: const Text("共通テスト 科目設定"),
                   leading: const Icon(Icons.subject),
                   onPressed: (context) {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => TestTypeSettingsScreen(testType: testType),),);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => StandardTestSubjectSettingScreen(
+                          standardTestSubject: standardTestSubject,
+                        ),
+                      ),
+                    );
                   },
                 ),
                 SettingsTile.navigation(
@@ -39,7 +48,6 @@ class SettingScreen extends StatelessWidget {
                 ),
               ],
             ),
-
           ]),
     );
   }

@@ -1,12 +1,24 @@
 import 'package:test_score_app/models/standard_test_subject.dart';
-
-import '../models/standard_test_score.dart';
+import 'package:test_score_app/models/standard_test_score.dart';
 
 var dummySubject = StandardTestSubject(
-    math1TestSubject: Math1Subject.math1a,
-    science1TestSubject: ScienceSubject.physics,
-    science2TestSubject: ScienceSubject.chemistry,
-    society1TestSubject: SocietySubject.geography);
+  math1TestSubject: Math1Subject.math1a,
+  science1TestSubject: ScienceSubject.physics,
+  science2TestSubject: ScienceSubject.chemistry,
+  society1TestSubject: SocietySubject.geography,
+  isModernJapanese: true,
+  isClassicalJapanese: true,
+  isClassicalChinese: true,
+  isMath1: true,
+  isMath2: true,
+  isScience1: true,
+  isScience2: true,
+  isSociety1: true,
+  isSociety2: false,
+  isReading: true,
+  isListening: true,
+  isInformation: true,
+);
 
 var dummyScore = [
   StandardTestScore(

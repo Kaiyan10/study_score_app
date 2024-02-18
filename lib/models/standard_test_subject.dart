@@ -11,7 +11,19 @@ class StandardTestSubject {
     this.society2TestSubject,
     this.readingTestSubject = "英語リーディング",
     this.listeningTestSubject = "英語リスニング",
-    this.informationTestSubject = "情報"
+    this.informationTestSubject = "情報",
+    required this.isModernJapanese,
+    required this.isClassicalJapanese,
+    required this.isClassicalChinese,
+    required this.isMath1,
+    required this.isMath2,
+    required this.isScience1,
+    required this.isScience2,
+    required this.isSociety1,
+    required this.isSociety2,
+    required this.isReading,
+    required this.isListening,
+    required this.isInformation,
   });
 
   String? modernJapaneseTestSubject;
@@ -25,10 +37,22 @@ class StandardTestSubject {
   SocietySubject? society2TestSubject;
   String? readingTestSubject;
   String? listeningTestSubject;
-  String? informationTestSubject = "情報";
+  String? informationTestSubject;
+  final bool isModernJapanese;
+  final bool isClassicalJapanese;
+  final bool isClassicalChinese;
+  final bool isMath1;
+  final bool isMath2;
+  final bool isScience1;
+  final bool isScience2;
+  final bool isSociety1;
+  final bool isSociety2;
+  final bool isReading;
+  final bool isListening;
+  final bool isInformation;
 }
 
-enum Math1Subject{
+enum Math1Subject {
   math1('数学1'),
   math1a('数学1a'),
   none('');
@@ -38,7 +62,7 @@ enum Math1Subject{
   final String displayName;
 }
 
-enum ScienceSubject{
+enum ScienceSubject {
   basicPhysics("物理基礎"),
   basicChemistry("化学基礎"),
   basicBiology("生物基礎"),
@@ -46,19 +70,21 @@ enum ScienceSubject{
   physics("物理"),
   chemistry("化学"),
   biology("生物"),
-  geology("地学"),;
+  geology("地学"),
+  ;
 
   const ScienceSubject(this.displayName);
   final String displayName;
 }
 
-enum SocietySubject{
+enum SocietySubject {
   basicSociety("地理総合／歴史総合／公共"),
   geography("地理総合、地理探究"),
   japaneseHistory("歴史総合、日本史探究"),
   worldHistory("歴史総合、世界史探究"),
   politicsAndEconomics("公共、政治・経済"),
-  politicsAndEthics("公共、倫理"),;
+  politicsAndEthics("公共、倫理"),
+  ;
 
   const SocietySubject(this.displayName);
   final String displayName;
