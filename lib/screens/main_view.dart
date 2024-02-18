@@ -15,14 +15,12 @@ class MainViewScreen extends StatefulWidget {
 }
 
 class _MainViewScreenState extends State<MainViewScreen> {
-  final StandardTestSubject standardTestSubject = dummySubject;
+  late final StandardTestSubject testSubject =dummySubject;
 
-  static const _screens = [
-    TopViewScreen(),
-    ChartView(),
-    SettingScreen(
-      standardTestSubject: standardTestSubject,
-    ),
+  late final _screens = [
+    const TopViewScreen(),
+    const ChartView(),
+    SettingScreen(standardTestSubject: testSubject),
   ];
 
   int _selectedIndex = 0;

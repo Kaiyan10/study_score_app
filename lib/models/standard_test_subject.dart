@@ -38,18 +38,18 @@ class StandardTestSubject {
   String? readingTestSubject;
   String? listeningTestSubject;
   String? informationTestSubject;
-  final bool isModernJapanese;
-  final bool isClassicalJapanese;
-  final bool isClassicalChinese;
-  final bool isMath1;
-  final bool isMath2;
-  final bool isScience1;
-  final bool isScience2;
-  final bool isSociety1;
-  final bool isSociety2;
-  final bool isReading;
-  final bool isListening;
-  final bool isInformation;
+  bool isModernJapanese;
+  bool isClassicalJapanese;
+  bool isClassicalChinese;
+   bool isMath1;
+   bool isMath2;
+   bool isScience1;
+   bool isScience2;
+   bool isSociety1;
+   bool isSociety2;
+   bool isReading;
+   bool isListening;
+   bool isInformation;
 }
 
 enum Math1Subject {
