@@ -17,7 +17,7 @@ class StandardTestSubject {
   String? modernJapaneseTestSubject;
   String? classicalJapaneseTestSubject;
   String? classicalChineseTestSubject;
-  Math1Subject? math1TestSubject ;
+  Math1Subject? math1TestSubject;
   String? math2TestSubject;
   ScienceSubject? science1TestSubject;
   ScienceSubject? science2TestSubject;
@@ -29,77 +29,37 @@ class StandardTestSubject {
 }
 
 enum Math1Subject{
-  math1,
-  math1a
+  math1('数学1'),
+  math1a('数学1a'),
+  none('');
+
+  const Math1Subject(this.displayName);
+
+  final String displayName;
 }
 
 enum ScienceSubject{
-  basicPhysics,
-  basicChemistry,
-  basicBiology,
-  basicGeology,
-  physics,
-  chemistry,
-  biology,
-  geology
+  basicPhysics("物理基礎"),
+  basicChemistry("化学基礎"),
+  basicBiology("生物基礎"),
+  basicGeology("地学基礎"),
+  physics("物理"),
+  chemistry("化学"),
+  biology("生物"),
+  geology("地学"),;
+
+  const ScienceSubject(this.displayName);
+  final String displayName;
 }
 
 enum SocietySubject{
-  basicSociety,
-  geography,
-  japaneseHistory,
-  worldHistory,
-  politicsAndEconomics,
-  politicsAndEthics
-}
+  basicSociety("地理総合／歴史総合／公共"),
+  geography("地理総合、地理探究"),
+  japaneseHistory("歴史総合、日本史探究"),
+  worldHistory("歴史総合、世界史探究"),
+  politicsAndEconomics("公共、政治・経済"),
+  politicsAndEthics("公共、倫理"),;
 
-String Math1SubjectGetName(Math1Subject subject){
-  if (subject == Math1Subject.math1){
-    return "数学1";
-  }else if(subject == Math1Subject.math1a){
-    return "数学1・A";
-  }
-  else{
-    return "";
-  }
-}
-
-String ScienceSubjectGetName(ScienceSubject subject){
-  if (subject == ScienceSubject.basicPhysics){
-    return "物理基礎";
-  }else if(subject == ScienceSubject.basicChemistry){
-    return "化学基礎";
-  }else if(subject == ScienceSubject.basicBiology){
-    return "生物基礎";
-  }else if(subject == ScienceSubject.basicGeology){
-    return "地学基礎";
-  }else if (subject == ScienceSubject.physics){
-    return "物理";
-  }else if(subject == ScienceSubject.chemistry){
-    return "化学";
-  }else if(subject == ScienceSubject.biology){
-    return "生物";
-  }else if(subject == ScienceSubject.geology){
-    return "地学";
-  } else{
-    return "";
-  }
-}
-
-String SocietySubjectGetName(SocietySubject subject){
-  if (subject == SocietySubject.basicSociety){
-    return "地理総合／歴史総合／公共";
-  }else if(subject == SocietySubject.geography){
-    return "地理総合、地理探究";
-  }else if(subject == SocietySubject.japaneseHistory){
-    return "歴史総合、日本史探究";
-  }else if(subject == SocietySubject.worldHistory){
-    return "歴史総合、世界史探究";
-  }else if (subject == SocietySubject.politicsAndEconomics){
-    return "公共、政治・経済";
-  }else if(subject == SocietySubject.politicsAndEthics){
-    return "公共、倫理";
-  }else{
-    return "";
-  }
+  const SocietySubject(this.displayName);
+  final String displayName;
 }
