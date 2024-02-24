@@ -4,7 +4,7 @@ class StandardTestSubject {
     this.classicalJapaneseTestSubject = "古文",
     this.classicalChineseTestSubject = "漢文",
     this.math1TestSubject,
-    this.math2TestSubject = "数学Ⅱ、数学B、数学C",
+    this.math2TestSubject = "数学Ⅱ/数学B/数学C",
     this.science1TestSubject,
     this.science2TestSubject,
     this.society1TestSubject,
@@ -78,12 +78,12 @@ enum ScienceSubject {
 }
 
 enum SocietySubject {
-  basicSociety("地理総合／歴史総合／公共"),
-  geography("地理総合、地理探究"),
-  japaneseHistory("歴史総合、日本史探究"),
-  worldHistory("歴史総合、世界史探究"),
-  politicsAndEconomics("公共、政治・経済"),
-  politicsAndEthics("公共、倫理"),
+  basicSociety("地理総合/歴史総合/公共"),
+  geography("地理総合/地理探究"),
+  japaneseHistory("歴史総合/日本史探究"),
+  worldHistory("歴史総合/世界史探究"),
+  politicsAndEconomics("公共/政治経済"),
+  politicsAndEthics("公共/倫理"),
   ;
 
   const SocietySubject(this.displayName);

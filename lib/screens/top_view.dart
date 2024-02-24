@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_score_app/data/dummy_data.dart';
 import 'package:test_score_app/widgets/score_datarow.dart';
+import 'package:test_score_app/widgets/new_stdscore_input.dart';
 
 class TopViewScreen extends StatefulWidget {
   const TopViewScreen({Key? key}) : super(key: key);
@@ -17,31 +18,57 @@ class _TopViewScreenState extends State<TopViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Topページ"),
+      appBar: AppBar(
+        title: const Text(
+          "Topページ",
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-              columns: [
-                DataColumn(
-                  label: Container(width: 100, child: Text("科目")),
-                ),
-                for (final score in scores)
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      body: Column(
+        children: [
+          const SizedBox(height: 20,),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: DataTable(
+                columns: [
                   DataColumn(
-                      label: Container(
-                    width: 80,
-                    child: Text(
-                      score.testName,
-                      style: const TextStyle(fontSize: 10),
-                      softWrap: true,
+                    label: Container(
+                      width: 80,
+                      child: const Text("科目"),
                     ),
-                  )),
-              ],
-              rows: makingDataRow(
-                subjects,
-                scores,
-              )),
-        ));
+                  ),
+                  for (final score in scores)
+                    DataColumn(
+                        label: Container(
+                      width: 80,
+                      child: Text(
+                        score.testName,
+                        style: const TextStyle(fontSize: 12),
+                        softWrap: true,
+                      ),
+                    )),
+                ],
+                rows: makingDataRow(
+                  subjects,
+                  scores,
+                )),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+           builder: (ctx)=>
+            NewStdScoreInput(standardTestSubject: dummySubject,)
+           );
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }
