@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_score_app/data/dummy_data.dart';
 import 'package:test_score_app/models/standard_test_subject.dart';
 import 'package:test_score_app/screens/chart_view.dart';
+import 'package:test_score_app/screens/home_view.dart';
 import 'package:test_score_app/screens/setting_screen.dart';
 import 'package:test_score_app/screens/top_view.dart';
 
@@ -15,9 +16,10 @@ class MainViewScreen extends StatefulWidget {
 }
 
 class _MainViewScreenState extends State<MainViewScreen> {
-  late final StandardTestSubject testSubject =dummySubject;
+  late final StandardTestSubject testSubject = dummySubject;
 
   late final _screens = [
+    const HomeViewScreen(),
     const TopViewScreen(),
     const ChartView(),
     SettingScreen(standardTestSubject: testSubject),
@@ -44,6 +46,10 @@ class _MainViewScreenState extends State<MainViewScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.table_chart_sharp),
+            label: '成績表',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart),
             label: "成績グラフ",
           ),
@@ -52,7 +58,12 @@ class _MainViewScreenState extends State<MainViewScreen> {
             label: "設定",
           ),
         ],
-        
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
       ),
     );
   }
