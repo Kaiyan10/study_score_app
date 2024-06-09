@@ -1,52 +1,135 @@
 import 'package:flutter/material.dart';
+import 'package:test_score_app/models/first_choice_school.dart';
 
-class HomeViewScreen extends StatelessWidget {
+class HomeViewScreen extends StatefulWidget {
   const HomeViewScreen({super.key});
 
   @override
+  State<HomeViewScreen> createState() => _HomeViewScreenState();
+}
+
+class _HomeViewScreenState extends State<HomeViewScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Topページ"),
-      ),
-      body: Center(
+      appBar: AppBar(),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
+            Row(
+              children: [
+                Text("第一志望校"),
+              ],
+            ),
             SizedBox(
-              height: 115,
-              width: 115,
-              child: Stack(
-                fit: StackFit.expand,
-                clipBehavior: Clip.none,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('images/profile_icon.png'),
-                    backgroundColor: Colors.transparent,
-                  ),
-                  Positioned(
-                    right: -10,
-                    bottom: 0,
-                    child: SizedBox(
-                      height: 40,
-                      width: 40,
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          padding: EdgeInsets.zero,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border: Border.all(color: Colors.white, width: 2),
-                            color: Colors.grey.shade100,
+              height: 2,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(20)),
+                ),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 7,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "北海道大学",
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                Text(
+                                  "総合入試理系　数学重点",
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
                           ),
-                          child: Icon(
-                            Icons.camera_alt_outlined,
-                            color: Colors.grey.shade500,
+                          Expanded(
+                            flex: 3,
+                            child: CircleAvatar(
+                              radius: 40,
+                              backgroundImage:
+                                  AssetImage('images/hokkaido_university.jpg'),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ),
+                      Divider(
+                        thickness: 0.5,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("大学入試共通テスト"),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                LinearProgressIndicator(
+                                  value: 0.7,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "630 / 900",
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.blueGrey),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                            flex: 5,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text("個別試験"),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                LinearProgressIndicator(
+                                  value: 0.4,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "180 / 450",
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.blueGrey),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ],

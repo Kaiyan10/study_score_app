@@ -2,6 +2,7 @@ class StandardTestScore {
   StandardTestScore({
     required this.no,
     required this.testName,
+    required this.testDate,
     this.modernJapaneseTestScore,
     this.classicalJapaneseTestScore,
     this.classicalChineseTestScore,
@@ -18,6 +19,7 @@ class StandardTestScore {
 
   final int no;
   final String testName;
+  final DateTime testDate;
   int? modernJapaneseTestScore;
   int? classicalJapaneseTestScore;
   int? classicalChineseTestScore;

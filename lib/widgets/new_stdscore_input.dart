@@ -255,7 +255,9 @@ class _NewStdScoreInputState extends State<NewStdScoreInput> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -263,14 +265,22 @@ class _NewStdScoreInputState extends State<NewStdScoreInput> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text('Cancel',style: TextStyle(fontSize: 15),),
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
-                  const SizedBox(width: 20,),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text("送信",style: TextStyle(fontSize: 15),),
+                    child: const Text(
+                      "送信",
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
                 ],
               ),

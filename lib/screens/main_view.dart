@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_score_app/data/dummy_data.dart';
+import 'package:test_score_app/models/first_choice_school.dart';
 import 'package:test_score_app/models/standard_test_subject.dart';
 import 'package:test_score_app/screens/chart_view.dart';
 import 'package:test_score_app/screens/home_view.dart';
@@ -21,7 +22,7 @@ class _MainViewScreenState extends State<MainViewScreen> {
   late final _screens = [
     const HomeViewScreen(),
     const TopViewScreen(),
-    const ChartView(),
+    // const ChartView(),
     SettingScreen(standardTestSubject: testSubject),
   ];
 
@@ -48,10 +49,6 @@ class _MainViewScreenState extends State<MainViewScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.table_chart_sharp),
             label: '成績表',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart),
-            label: "成績グラフ",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

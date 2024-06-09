@@ -10,21 +10,27 @@ List<DataRow> makingDataRow(
     if (subjects.isModernJapanese == true)
       makingOneDataRow(scores, subjects.modernJapaneseTestSubject.toString()),
     if (subjects.isClassicalJapanese == true)
-      makingOneDataRow(scores, subjects.classicalJapaneseTestSubject.toString()),
+      makingOneDataRow(
+          scores, subjects.classicalJapaneseTestSubject.toString()),
     if (subjects.isClassicalChinese == true)
       makingOneDataRow(scores, subjects.classicalChineseTestSubject.toString()),
     if (subjects.isMath1 == true)
-      makingOneDataRow(scores, subjects.math1TestSubject!.displayName.toString()),
+      makingOneDataRow(
+          scores, subjects.math1TestSubject!.displayName.toString()),
     if (subjects.isMath2 == true)
       makingOneDataRow(scores, subjects.math2TestSubject.toString()),
     if (subjects.isScience1 == true)
-      makingOneDataRow(scores, subjects.science1TestSubject!.displayName.toString()),
+      makingOneDataRow(
+          scores, subjects.science1TestSubject!.displayName.toString()),
     if (subjects.isScience2 == true)
-      makingOneDataRow(scores, subjects.science2TestSubject!.displayName.toString()),
+      makingOneDataRow(
+          scores, subjects.science2TestSubject!.displayName.toString()),
     if (subjects.isSociety1 == true)
-      makingOneDataRow(scores, subjects.society1TestSubject!.displayName.toString()),
+      makingOneDataRow(
+          scores, subjects.society1TestSubject!.displayName.toString()),
     if (subjects.isSociety2 == true)
-      makingOneDataRow(scores, subjects.society2TestSubject!.displayName.toString()),
+      makingOneDataRow(
+          scores, subjects.society2TestSubject!.displayName.toString()),
     if (subjects.isReading == true)
       makingOneDataRow(scores, subjects.readingTestSubject.toString()),
     if (subjects.isListening == true)
@@ -34,29 +40,28 @@ List<DataRow> makingDataRow(
   ];
 }
 
-
-DataRow makingOneDataRow(List<StandardTestScore> scores,String subjectName){
+DataRow makingOneDataRow(List<StandardTestScore> scores, String subjectName) {
   return DataRow(cells: [
-        DataCell(
-          Container(
-            width: 80,
-            child: Text(
-              subjectName,
-              softWrap: true,
+    DataCell(
+      Container(
+        width: 80,
+        child: Text(
+          subjectName,
+          softWrap: true,
+        ),
+      ),
+    ),
+    for (final score in scores)
+      DataCell(
+        Container(
+          width: 80,
+          child: Text(
+            score.modernJapaneseTestScore.toString(),
+            style: TextStyle(
+              fontSize: 16.0,
             ),
           ),
         ),
-        for (final score in scores)
-          DataCell(
-            Container(
-              width: 80,
-              child: Text(
-                score.modernJapaneseTestScore.toString(),
-                style: TextStyle(
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-          ),
-      ]);
+      ),
+  ]);
 }

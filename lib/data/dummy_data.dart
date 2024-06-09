@@ -24,6 +24,7 @@ var dummyScore = [
   StandardTestScore(
       no: 1,
       testName: "第１回　共通テスト本番レベル模試",
+      testDate: DateTime(2024 - 04 - 01),
       modernJapaneseTestScore: 60,
       classicalJapaneseTestScore: 20,
       classicalChineseTestScore: 30,
@@ -38,6 +39,7 @@ var dummyScore = [
   StandardTestScore(
       no: 2,
       testName: "第２回　共通テスト本番レベル模試",
+      testDate: DateTime(2024 - 06 - 01),
       modernJapaneseTestScore: 70,
       classicalJapaneseTestScore: 20,
       classicalChineseTestScore: 40,
@@ -52,6 +54,7 @@ var dummyScore = [
   StandardTestScore(
       no: 3,
       testName: "第３回　共通テスト本番レベル模試",
+      testDate: DateTime(2024 - 08 - 01),
       modernJapaneseTestScore: 70,
       classicalJapaneseTestScore: 30,
       classicalChineseTestScore: 40,

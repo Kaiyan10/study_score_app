@@ -29,7 +29,9 @@ class _TopViewScreenState extends State<TopViewScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: DataTable(
@@ -37,7 +39,7 @@ class _TopViewScreenState extends State<TopViewScreen> {
                   DataColumn(
                     label: Container(
                       width: 80,
-                      child: const Text("科目"),
+                      child: const Text(""),
                     ),
                   ),
                   for (final score in scores)
@@ -61,11 +63,11 @@ class _TopViewScreenState extends State<TopViewScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-            isScrollControlled: true,
-            context: context,
-           builder: (ctx)=>
-            NewStdScoreInput(standardTestSubject: dummySubject,)
-           );
+              isScrollControlled: true,
+              context: context,
+              builder: (ctx) => NewStdScoreInput(
+                    standardTestSubject: dummySubject,
+                  ));
         },
         child: const Icon(Icons.add),
       ),
