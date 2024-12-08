@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:test_score_app/models/first_choice_school.dart';
 import 'package:test_score_app/models/standard_test_subject.dart';
+import 'package:test_score_app/screens/settings/first_choice_school_setting.dart';
 import 'package:test_score_app/screens/settings/standard_test_subject_setting_screen.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -43,8 +45,16 @@ class SettingScreen extends StatelessWidget {
                     Icons.mail,
                     color: Colors.lightBlue,
                   ),
-                  title: const Text('設定２'),
-                  onPressed: (context) {},
+                  title: const Text('志望校設定'),
+                  onPressed: (context) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => FirstChoiceSchoolSettingScreen(
+                          standardTestSubject: standardTestSubject,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

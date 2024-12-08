@@ -10,55 +10,86 @@ class TopViewScreen extends StatefulWidget {
   State<TopViewScreen> createState() => _TopViewScreenState();
 }
 
+enum TestTypes { firstTest, secondTest }
+
 class _TopViewScreenState extends State<TopViewScreen> {
   final selectedIndex = <int>{};
   final subjects = dummySubject;
   final scores = dummyScore;
+  List<bool> isSelected = [true, false];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Topページ",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: DataTable(
-                columns: [
-                  DataColumn(
-                    label: Container(
-                      width: 80,
-                      child: const Text(""),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: ToggleButtons(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5),
+                ),
+                isSelected: isSelected,
+                onPressed: (int index) {
+                  setState(() {
+                    for (int i = 0; i < isSelected.length; i++) {
+                      isSelected[i] = i == index;
+                    }
+                  });
+                },
+                children: const <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10,
                     ),
+                    child: Text("共通テスト"),
                   ),
-                  for (final score in scores)
-                    DataColumn(
-                        label: Container(
-                      width: 80,
-                      child: Text(
-                        score.testName,
-                        style: const TextStyle(fontSize: 12),
-                        softWrap: true,
-                      ),
-                    )),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10,
+                    ),
+                    child: Text("二次試験"),
+                  ),
                 ],
-                rows: makingDataRow(
-                  subjects,
-                  scores,
-                )),
-          ),
-        ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            if (isSelected[0] == true)
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                    columns: [
+                      DataColumn(
+                        label: Container(
+                          width: 80,
+                          child: Text(""),
+                        ),
+                      ),
+                      for (final score in scores)
+                        DataColumn(
+                            label: Container(
+                          width: 80,
+                          child: Text(
+                            score.testName,
+                            style: TextStyle(fontSize: 12),
+                            softWrap: true,
+                          ),
+                        )),
+                    ],
+                    rows: makingDataRow(
+                      subjects,
+                      scores,
+                    )),
+              ),
+            if (isSelected[1] == true) Text("二次試験")
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

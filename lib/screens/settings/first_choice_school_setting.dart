@@ -2,20 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:test_score_app/models/standard_test_subject.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-class StandardTestSubjectSettingScreen extends StatefulWidget {
+class FirstChoiceSchoolSettingScreen extends StatefulWidget {
   final StandardTestSubject standardTestSubject;
 
-  const StandardTestSubjectSettingScreen(
+  const FirstChoiceSchoolSettingScreen(
       {super.key, required this.standardTestSubject});
 
   @override
-  State<StandardTestSubjectSettingScreen> createState() =>
+  State<FirstChoiceSchoolSettingScreen> createState() =>
       _TestTypeSettingsScreenState();
 }
 
 class _TestTypeSettingsScreenState
-    extends State<StandardTestSubjectSettingScreen> {
+    extends State<FirstChoiceSchoolSettingScreen> {
   late StandardTestSubject subjects;
+
+  void _showBottomSelect(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 300,
+            child: Column(
+              children: [
+                Center(
+                  child: MenuAnchor(
+                    menuChildren: [],
+                  ),
+                ),
+                TextButton(onPressed: () {}, child: Text("確定"))
+              ],
+            ),
+          );
+        });
+  }
 
   @override
   void initState() {
@@ -27,9 +47,33 @@ class _TestTypeSettingsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("第一志望校 設定")),
+        appBar: AppBar(),
         body: SettingsList(
           sections: [
+            SettingsSection(
+              title: const Text("大学情報"),
+              tiles: [
+                SettingsTile.navigation(
+                    leading: const Icon(Icons.school),
+                    title: Text("大学名"),
+                    value: Text("北海道大学"),
+                    onPressed: (context) {
+                      _showBottomSelect(context);
+                    }),
+                SettingsTile.navigation(
+                  leading: const Icon(Icons.school),
+                  title: Text("学部名"),
+                  value: Text("総合入試理系"),
+                  onPressed: (context) {},
+                ),
+                SettingsTile.navigation(
+                  leading: const Icon(Icons.school),
+                  title: Text("学科／コース名"),
+                  value: Text("数学重点"),
+                  onPressed: (context) {},
+                )
+              ],
+            ),
             SettingsSection(tiles: [
               SettingsTile.switchTile(
                 initialValue: subjects.isModernJapanese,

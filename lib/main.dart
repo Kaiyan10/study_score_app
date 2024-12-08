@@ -13,11 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: "Noto Sans JP"
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "Noto Sans JP"),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -30,4 +28,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
