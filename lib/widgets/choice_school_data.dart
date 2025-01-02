@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class ChoiceSchoolDataWidget extends StatelessWidget {
   const ChoiceSchoolDataWidget({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+
+        final Brightness brightness = Theme.of(context).brightness;
+    const double progressvalue = 70.0;
+
+    return SizedBox(
       width: double.infinity,
       child: Card(
         elevation: 4,
@@ -70,9 +77,32 @@ class ChoiceSchoolDataWidget extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        LinearProgressIndicator(
-                          value: 0.7,
+                        SizedBox(
+                          child: SfLinearGauge(
+                            showTicks: false,
+                        showLabels: false,
+                        animateAxis: true,
+                        axisTrackStyle: LinearAxisTrackStyle(
+                          thickness: 5,
+                          edgeStyle: LinearEdgeStyle.bothCurve,
+                          borderWidth: 1,
+                          borderColor: brightness == Brightness.dark
+                              ? const Color(0xff898989)
+                              : Colors.grey[350],
+                          color: brightness == Brightness.dark
+                              ? Colors.transparent
+                              : Colors.grey[350],
                         ),
+                        barPointers: const <LinearBarPointer>[
+                          LinearBarPointer(
+                              value: progressvalue,
+                              thickness: 5,
+                              edgeStyle: LinearEdgeStyle.bothCurve,
+                              color: Colors.blue),
+                        ],
+                          ),
+                        ),
+                        
                         SizedBox(
                           height: 10,
                         ),
