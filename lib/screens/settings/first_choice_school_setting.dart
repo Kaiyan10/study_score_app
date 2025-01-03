@@ -1,51 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:test_score_app/models/first_choice_school.dart';
 import 'package:test_score_app/models/standard_test_subject.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:test_score_app/screens/settings/editting_screen.dart';
+import 'package:intl/intl.dart';
 
-class FirstChoiceSchoolSettingScreen extends StatefulWidget {
-  final StandardTestSubject standardTestSubject;
-
-  const FirstChoiceSchoolSettingScreen(
-      {super.key, required this.standardTestSubject});
+class FirstChoiceSchoolSettingScreen extends ConsumerStatefulWidget {
+  const FirstChoiceSchoolSettingScreen({super.key});
 
   @override
-  State<FirstChoiceSchoolSettingScreen> createState() =>
+  ConsumerState<FirstChoiceSchoolSettingScreen> createState() =>
       _TestTypeSettingsScreenState();
 }
 
 class _TestTypeSettingsScreenState
-    extends State<FirstChoiceSchoolSettingScreen> {
-  late StandardTestSubject subjects;
-
-  void _showBottomSelect(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            height: 300,
-            child: Column(
-              children: [
-                Center(
-                  child: MenuAnchor(
-                    menuChildren: [],
-                  ),
-                ),
-                TextButton(onPressed: () {}, child: Text("確定"))
-              ],
-            ),
-          );
-        });
-  }
-
+    extends ConsumerState<FirstChoiceSchoolSettingScreen> {
   @override
   void initState() {
     super.initState();
-
-    subjects = widget.standardTestSubject;
   }
 
   @override
   Widget build(BuildContext context) {
+    FirstChoiceSchool choiceSchool = ref.watch(firstChoiceSchoolProvider);
+    StandardTestSubject standardTestSubject =
+        ref.watch(standardTestSubjectProvider);
     return Scaffold(
         appBar: AppBar(),
         body: SettingsList(
@@ -56,66 +37,167 @@ class _TestTypeSettingsScreenState
                 SettingsTile.navigation(
                     leading: const Icon(Icons.school),
                     title: Text("大学名"),
-                    value: Text("北海道大学"),
-                    onPressed: (context) {
-                      _showBottomSelect(context);
+                    value: Text(choiceSchool.schoolName),
+                    onPressed: (context) async {
+                      choiceSchool.schoolName = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingEdittingScreen(
+                                  targetText: choiceSchool.schoolName)));
+                      setState(() {
+                        ref.watch(firstChoiceSchoolProvider.notifier).state =
+                            choiceSchool;
+                      });
                     }),
                 SettingsTile.navigation(
                   leading: const Icon(Icons.school),
                   title: Text("学部名"),
-                  value: Text("総合入試理系"),
-                  onPressed: (context) {},
+                  value: Text(choiceSchool.depertment),
+                  onPressed: (context) async {
+                    choiceSchool.depertment = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingEdittingScreen(
+                                targetText: choiceSchool.depertment)));
+                    setState(() {
+                      ref.watch(firstChoiceSchoolProvider.notifier).state =
+                          choiceSchool;
+                    });
+                  },
                 ),
                 SettingsTile.navigation(
                   leading: const Icon(Icons.school),
                   title: Text("学科／コース名"),
-                  value: Text("数学重点"),
-                  onPressed: (context) {},
+                  value: Text(choiceSchool.faculty),
+                  onPressed: (context) async {
+                    choiceSchool.faculty = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingEdittingScreen(
+                                targetText: choiceSchool.faculty)));
+                    setState(() {
+                      ref.watch(firstChoiceSchoolProvider.notifier).state =
+                          choiceSchool;
+                    });
+                  },
                 )
               ],
             ),
-            SettingsSection(tiles: [
+            SettingsSection(title: const Text("試験日設定"), tiles: [
+              SettingsTile.navigation(
+                title: Text("共通テスト日付"),
+                value: (choiceSchool.firstTestDate!=null)?Text(DateFormat.yMd().format(choiceSchool.firstTestDate??DateTime.now())):Text(""),
+                onPressed: (context) async{
+                  choiceSchool.firstTestDate = await
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SfDateRangePicker(
+                        headerStyle: DateRangePickerHeaderStyle(
+                          textAlign: TextAlign.left,
+                        ),
+                        selectionMode: DateRangePickerSelectionMode.single,
+                        enablePastDates: true,
+                        showActionButtons: true,
+                        onCancel: () {
+                          Navigator.pop(context);
+                        },
+                        onSubmit: (Object? value) {
+                          Navigator.pop(context, value);
+                        },
+                      );
+                      
+                    },
+                  );
+                  setState(() {
+                      ref.watch(firstChoiceSchoolProvider.notifier).state =
+                          choiceSchool;
+                    });
+                },
+              ), SettingsTile.navigation(
+                title: Text("二次試験日付"),
+                value: (choiceSchool.secondTestDate!=null)?Text(DateFormat.yMd().format(choiceSchool.secondTestDate??DateTime.now())):Text(""),
+                onPressed: (context) async{
+                  choiceSchool.secondTestDate = await
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SfDateRangePicker(
+                        headerStyle: DateRangePickerHeaderStyle(
+                          textAlign: TextAlign.left,
+                        ),
+                        selectionMode: DateRangePickerSelectionMode.single,
+                        enablePastDates: true,
+                        showActionButtons: true,
+                        onCancel: () {
+                          Navigator.pop(context);
+                        },
+                        onSubmit: (Object? value) {
+                          Navigator.pop(context, value);
+                        },
+                      );
+                      
+                    },
+                  );
+                  setState(() {
+                      ref.watch(firstChoiceSchoolProvider.notifier).state =
+                          choiceSchool;
+                    });
+                },
+              )
+            ]),
+            SettingsSection(title: const Text("共通テスト科目設定"), tiles: [
               SettingsTile.switchTile(
-                initialValue: subjects.isModernJapanese,
+                initialValue: standardTestSubject.isModernJapanese,
                 onToggle: (value) {
                   setState(() {
-                    subjects.isModernJapanese = value;
+                    standardTestSubject.isModernJapanese = value;
+                    ref.watch(standardTestSubjectProvider.notifier).state =
+                        standardTestSubject;
                   });
                 },
                 title: const Text("現代文"),
               ),
               SettingsTile.switchTile(
-                initialValue: subjects.isClassicalJapanese,
+                initialValue: standardTestSubject.isClassicalJapanese,
                 onToggle: (value) {
                   setState(() {
-                    subjects.isClassicalJapanese = value;
+                    standardTestSubject.isClassicalJapanese = value;
+                    ref.watch(standardTestSubjectProvider.notifier).state =
+                        standardTestSubject;
                   });
                 },
                 title: const Text("古文"),
               ),
               SettingsTile.switchTile(
-                initialValue: subjects.isClassicalChinese,
+                initialValue: standardTestSubject.isClassicalChinese,
                 onToggle: (value) {
                   setState(() {
-                    subjects.isClassicalChinese = value;
+                    standardTestSubject.isClassicalChinese = value;
+                    ref.watch(standardTestSubjectProvider.notifier).state =
+                        standardTestSubject;
                   });
                 },
                 title: const Text("漢文"),
               ),
               SettingsTile.switchTile(
-                initialValue: subjects.isMath1,
+                initialValue: standardTestSubject.isMath1,
                 onToggle: (value) {
                   setState(() {
-                    subjects.isMath1 = value;
+                    standardTestSubject.isMath1 = value;
+                    ref.watch(standardTestSubjectProvider.notifier).state =
+                        standardTestSubject;
                   });
                 },
                 title: const Text("数学1"),
               ),
               SettingsTile.switchTile(
-                initialValue: subjects.isMath2,
+                initialValue: standardTestSubject.isMath2,
                 onToggle: (value) {
                   setState(() {
-                    subjects.isMath2 = value;
+                    standardTestSubject.isMath2 = value;
+                    ref.watch(standardTestSubjectProvider.notifier).state =
+                        standardTestSubject;
                   });
                 },
                 title: const Text("数学2"),

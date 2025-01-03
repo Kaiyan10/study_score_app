@@ -1,3 +1,5 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 class StandardTestSubject {
   StandardTestSubject({
     this.modernJapaneseTestSubject = "現代文",
@@ -41,15 +43,15 @@ class StandardTestSubject {
   bool isModernJapanese;
   bool isClassicalJapanese;
   bool isClassicalChinese;
-   bool isMath1;
-   bool isMath2;
-   bool isScience1;
-   bool isScience2;
-   bool isSociety1;
-   bool isSociety2;
-   bool isReading;
-   bool isListening;
-   bool isInformation;
+  bool isMath1;
+  bool isMath2;
+  bool isScience1;
+  bool isScience2;
+  bool isSociety1;
+  bool isSociety2;
+  bool isReading;
+  bool isListening;
+  bool isInformation;
 }
 
 enum Math1Subject {
@@ -89,3 +91,24 @@ enum SocietySubject {
   const SocietySubject(this.displayName);
   final String displayName;
 }
+
+final standardTestSubjectProvider = StateProvider((ref) {
+  return StandardTestSubject(
+    math1TestSubject: Math1Subject.math1a,
+    science1TestSubject: ScienceSubject.physics,
+    science2TestSubject: ScienceSubject.chemistry,
+    society1TestSubject: SocietySubject.geography,
+    isModernJapanese: true,
+    isClassicalJapanese: true,
+    isClassicalChinese: true,
+    isMath1: true,
+    isMath2: true,
+    isScience1: true,
+    isScience2: true,
+    isSociety1: true,
+    isSociety2: true,
+    isReading: true,
+    isListening: true,
+    isInformation: true,
+  );
+});

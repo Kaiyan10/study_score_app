@@ -43,7 +43,7 @@ List<DataRow> makingDataRow(
 DataRow makingOneDataRow(List<StandardTestScore> scores, String subjectName) {
   return DataRow(cells: [
     DataCell(
-      Container(
+      SizedBox(
         width: 80,
         child: Text(
           subjectName,
@@ -53,7 +53,7 @@ DataRow makingOneDataRow(List<StandardTestScore> scores, String subjectName) {
     ),
     for (final score in scores)
       DataCell(
-        Container(
+        SizedBox(
           width: 80,
           child: Text(
             score.modernJapaneseTestScore.toString(),

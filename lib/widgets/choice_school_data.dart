@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:test_score_app/models/first_choice_school.dart';
 
-class ChoiceSchoolDataWidget extends StatelessWidget {
+class ChoiceSchoolDataWidget extends ConsumerWidget {
   const ChoiceSchoolDataWidget({super.key});
 
-  
-
   @override
-  Widget build(BuildContext context) {
-
-        final Brightness brightness = Theme.of(context).brightness;
+  Widget build(BuildContext context, WidgetRef ref) {
+    FirstChoiceSchool choiceSchool = ref.watch(firstChoiceSchoolProvider);
+    final Brightness brightness = Theme.of(context).brightness;
     const double progressvalue = 70.0;
+    
 
     return SizedBox(
       width: double.infinity,
@@ -34,11 +35,11 @@ class ChoiceSchoolDataWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "北海道大学",
+                          choiceSchool.schoolName,
                           style: TextStyle(fontSize: 14),
                         ),
                         Text(
-                          "総合入試理系 数学重点",
+                          "${choiceSchool.depertment} ${choiceSchool.faculty}",
                           style: TextStyle(fontSize: 10),
                         ),
                       ],
@@ -47,9 +48,9 @@ class ChoiceSchoolDataWidget extends StatelessWidget {
                   Expanded(
                       flex: 2,
                       child: CircleAvatar(
-                        child: const Text("A"),
                         backgroundColor: Colors.greenAccent,
                         radius: 20,
+                        child: const Text("A"),
                       )),
                   Expanded(
                     flex: 3,
@@ -80,29 +81,28 @@ class ChoiceSchoolDataWidget extends StatelessWidget {
                         SizedBox(
                           child: SfLinearGauge(
                             showTicks: false,
-                        showLabels: false,
-                        animateAxis: true,
-                        axisTrackStyle: LinearAxisTrackStyle(
-                          thickness: 5,
-                          edgeStyle: LinearEdgeStyle.bothCurve,
-                          borderWidth: 1,
-                          borderColor: brightness == Brightness.dark
-                              ? const Color(0xff898989)
-                              : Colors.grey[350],
-                          color: brightness == Brightness.dark
-                              ? Colors.transparent
-                              : Colors.grey[350],
-                        ),
-                        barPointers: const <LinearBarPointer>[
-                          LinearBarPointer(
-                              value: progressvalue,
+                            showLabels: false,
+                            animateAxis: true,
+                            axisTrackStyle: LinearAxisTrackStyle(
                               thickness: 5,
                               edgeStyle: LinearEdgeStyle.bothCurve,
-                              color: Colors.blue),
-                        ],
+                              borderWidth: 1,
+                              borderColor: brightness == Brightness.dark
+                                  ? const Color(0xff898989)
+                                  : Colors.grey[350],
+                              color: brightness == Brightness.dark
+                                  ? Colors.transparent
+                                  : Colors.grey[350],
+                            ),
+                            barPointers: const <LinearBarPointer>[
+                              LinearBarPointer(
+                                  value: progressvalue,
+                                  thickness: 5,
+                                  edgeStyle: LinearEdgeStyle.bothCurve,
+                                  color: Colors.blue),
+                            ],
                           ),
                         ),
-                        
                         SizedBox(
                           height: 10,
                         ),

@@ -4,7 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:test_score_app/models/standard_test_score.dart';
 
 class ChartView extends StatefulWidget {
-  const ChartView({Key? key}) : super(key: key);
+  const ChartView({super.key});
 
   @override
   State<ChartView> createState() => _ChartViewState();
@@ -19,7 +19,7 @@ class _ChartViewState extends State<ChartView> {
   @override
   Widget build(BuildContext context) {
     yLabel = addChartYLabel(scores);
-    var spotCount = yLabel.length;
+
 
     return Scaffold(
         appBar: AppBar(
@@ -57,7 +57,6 @@ List<String> addChartYLabel(List<StandardTestScore> scores) {
   for (final testData in scores) {
     yLabel.add(testData.testName);
   }
-  ;
 
   return yLabel;
 }

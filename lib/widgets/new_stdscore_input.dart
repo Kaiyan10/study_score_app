@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test_score_app/models/standard_test_score.dart';
 import 'package:test_score_app/models/standard_test_subject.dart';
 
 class NewStdScoreInput extends StatefulWidget {
@@ -23,7 +22,6 @@ class _NewStdScoreInputState extends State<NewStdScoreInput> {
     subjects = widget.standardTestSubject;
   }
 
-  void _submitStdScore() {}
 
   @override
   Widget build(BuildContext context) {

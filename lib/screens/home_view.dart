@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:test_score_app/models/first_choice_school.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_score_app/widgets/choice_school_data.dart';
 import 'package:test_score_app/widgets/test_day_conter.dart';
 
-class HomeViewScreen extends StatefulWidget {
+class HomeViewScreen extends ConsumerStatefulWidget {
   const HomeViewScreen({super.key});
 
   @override
-  State<HomeViewScreen> createState() => _HomeViewScreenState();
+  ConsumerState<HomeViewScreen> createState() => _HomeViewScreenState();
 }
 
-class _HomeViewScreenState extends State<HomeViewScreen> {
+class _HomeViewScreenState extends ConsumerState<HomeViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

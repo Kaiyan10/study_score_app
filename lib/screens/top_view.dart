@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_score_app/data/dummy_data.dart';
 import 'package:test_score_app/widgets/score_datarow.dart';
 import 'package:test_score_app/widgets/new_stdscore_input.dart';
 
-class TopViewScreen extends StatefulWidget {
-  const TopViewScreen({Key? key}) : super(key: key);
+class TopViewScreen extends ConsumerStatefulWidget {
+  const TopViewScreen({super.key});
 
   @override
-  State<TopViewScreen> createState() => _TopViewScreenState();
+  ConsumerState<TopViewScreen> createState() => _TopViewScreenState();
 }
 
 enum TestTypes { firstTest, secondTest }
 
-class _TopViewScreenState extends State<TopViewScreen> {
+class _TopViewScreenState extends ConsumerState<TopViewScreen> {
   final selectedIndex = <int>{};
   final subjects = dummySubject;
   final scores = dummyScore;
@@ -66,14 +67,14 @@ class _TopViewScreenState extends State<TopViewScreen> {
                 child: DataTable(
                     columns: [
                       DataColumn(
-                        label: Container(
+                        label: SizedBox(
                           width: 80,
                           child: Text(""),
                         ),
                       ),
                       for (final score in scores)
                         DataColumn(
-                            label: Container(
+                            label: SizedBox(
                           width: 80,
                           child: Text(
                             score.testName,

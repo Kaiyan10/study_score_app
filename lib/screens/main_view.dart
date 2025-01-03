@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_score_app/data/dummy_data.dart';
-import 'package:test_score_app/models/first_choice_school.dart';
 import 'package:test_score_app/models/standard_test_subject.dart';
-import 'package:test_score_app/screens/chart_view.dart';
 import 'package:test_score_app/screens/home_view.dart';
 import 'package:test_score_app/screens/setting_screen.dart';
 import 'package:test_score_app/screens/top_view.dart';
@@ -10,7 +8,7 @@ import 'package:test_score_app/screens/top_view.dart';
 const testType = ["定期テスト", "共通テスト模試", "2次試験模試"];
 
 class MainViewScreen extends StatefulWidget {
-  const MainViewScreen({Key? key}) : super(key: key);
+  const MainViewScreen({super.key});
 
   @override
   State<MainViewScreen> createState() => _MainViewScreenState();
@@ -23,7 +21,7 @@ class _MainViewScreenState extends State<MainViewScreen> {
     const HomeViewScreen(),
     const TopViewScreen(),
     // const ChartView(),
-    SettingScreen(standardTestSubject: testSubject),
+    const SettingScreen(),
   ];
 
   int _selectedIndex = 0;
@@ -52,7 +50,7 @@ class _MainViewScreenState extends State<MainViewScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: "設定",
+            label: '設定',
           ),
         ],
         type: BottomNavigationBarType.fixed,

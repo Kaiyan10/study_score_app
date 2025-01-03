@@ -1,18 +1,15 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:settings_ui/settings_ui.dart';
-import 'package:test_score_app/models/first_choice_school.dart';
-import 'package:test_score_app/models/standard_test_subject.dart';
 import 'package:test_score_app/screens/settings/first_choice_school_setting.dart';
-import 'package:test_score_app/screens/settings/standard_test_subject_setting_screen.dart';
 
-class SettingScreen extends StatelessWidget {
-  final StandardTestSubject standardTestSubject;
-  const SettingScreen({super.key, required this.standardTestSubject});
+class SettingScreen extends ConsumerWidget {
+  const SettingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F7),
       appBar: AppBar(
@@ -25,33 +22,17 @@ class SettingScreen extends StatelessWidget {
           ),
           sections: [
             SettingsSection(
-              title: const Text("Common"),
               tiles: <SettingsTile>[
                 SettingsTile.navigation(
-                  title: const Text("共通テスト 科目設定"),
-                  leading: const Icon(Icons.subject),
-                  onPressed: (context) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => StandardTestSubjectSettingScreen(
-                          standardTestSubject: standardTestSubject,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                SettingsTile.navigation(
                   leading: const Icon(
-                    Icons.mail,
+                    Icons.school,
                     color: Colors.lightBlue,
                   ),
                   title: const Text('志望校設定'),
                   onPressed: (context) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => FirstChoiceSchoolSettingScreen(
-                          standardTestSubject: standardTestSubject,
-                        ),
+                        builder: (_) => FirstChoiceSchoolSettingScreen(),
                       ),
                     );
                   },
