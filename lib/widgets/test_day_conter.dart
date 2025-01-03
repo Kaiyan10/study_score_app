@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_score_app/models/first_choice_school.dart';
 
-class TestDayConter extends StatelessWidget {
+class TestDayConter extends ConsumerWidget {
   const TestDayConter({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
+  Widget build(BuildContext context,WidgetRef ref) {
+    FirstChoiceSchool choiceSchool = ref.read(firstChoiceSchoolProvider);
+    String firstTestDuration = choiceSchool.firstTestDate!.difference(DateTime.now()).inDays.toString();
+    String secondTestDuration = choiceSchool.secondTestDate!.difference(DateTime.now()).inDays.toString();
+    ref.listen(firstChoiceSchoolProvider, (previous,update){
+      firstTestDuration = update.firstTestDate!.difference(DateTime.now()).inDays.toString();
+      secondTestDuration = update.secondTestDate!.difference(DateTime.now()).inDays.toString();
+    });
+    return SizedBox(
       width: double.infinity,
       child: Card(
         elevation: 4,
@@ -30,7 +39,7 @@ class TestDayConter extends StatelessWidget {
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
-                        "200日",
+                        "$firstTestDuration 日",
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -47,7 +56,7 @@ class TestDayConter extends StatelessWidget {
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
-                        "230日",
+                        "$secondTestDuration 日",
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
